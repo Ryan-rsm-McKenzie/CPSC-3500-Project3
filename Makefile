@@ -2,8 +2,8 @@
 
 OBJS = main.o Bottleneck.o TrafficDirector.o TrafficSimulator.o Util.o Vehicle.o
 CC = g++
-CFLAGS = -pthread -c -std=c++11
-LFLAGS = -std=c++11
+CFLAGS = -c -std=c++11
+LFLAGS = -std=c++11 -pthread
 
 p3: $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o p3
