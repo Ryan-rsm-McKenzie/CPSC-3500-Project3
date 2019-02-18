@@ -52,6 +52,8 @@ void TrafficDirector::Run()
 
 void TrafficDirector::PrintHeader()
 {
+	using namespace TrafficDirectorLiterals;
+
 	_flagFile << FormatStr(FMT,
 						   TIME_LEN, TIME,
 						   STATE_LEN, STATE);
@@ -63,6 +65,8 @@ void TrafficDirector::PrintHeader()
 
 void TrafficDirector::TimeStamp(bool a_awake)
 {
+	using namespace TrafficDirectorLiterals;
+
 	std::time_t time = GetTime();
 	std::string timeStr = TimeToString(std::localtime(&time));
 
@@ -83,8 +87,8 @@ std::ofstream* TrafficDirector::GetCarLog()
 
 TrafficDirector::TrafficDirector() :
 	_mode(Mode::kInvalid),
-	_carFile(CAR_LOG),
-	_flagFile(FLAG_LOG)
+	_carFile(TrafficDirectorLiterals::CAR_LOG),
+	_flagFile(TrafficDirectorLiterals::FLAG_LOG)
 {
 	assert(_carFile.is_open());
 	assert(_flagFile.is_open());
@@ -93,12 +97,3 @@ TrafficDirector::TrafficDirector() :
 
 TrafficDirector::~TrafficDirector()
 {}
-
-
-constexpr decltype(TrafficDirector::FMT) TrafficDirector::FMT;
-constexpr decltype(TrafficDirector::TIME) TrafficDirector::TIME;
-constexpr decltype(TrafficDirector::STATE) TrafficDirector::STATE;
-constexpr decltype(TrafficDirector::CAR_LOG) TrafficDirector::CAR_LOG;
-constexpr decltype(TrafficDirector::FLAG_LOG) TrafficDirector::FLAG_LOG;
-constexpr decltype(TrafficDirector::TIME_LEN) TrafficDirector::TIME_LEN;
-constexpr decltype(TrafficDirector::STATE_LEN) TrafficDirector::STATE_LEN;
