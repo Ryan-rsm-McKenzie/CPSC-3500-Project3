@@ -47,7 +47,7 @@ void SpawnThread(std::vector<thread_t>& a_container, thread_callback_t* a_callba
 void JoinThread(thread_t& a_thread)
 {
 	void* retVal;
-	pthread_join(a_thread, retVal);
+	pthread_join(a_thread, &retVal);
 }
 #endif
 
