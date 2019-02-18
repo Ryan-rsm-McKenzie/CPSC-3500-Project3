@@ -11,19 +11,19 @@ p3: $(OBJS)
 main.o: main.cpp Bottleneck.h TrafficDirector.h TrafficSimulator.h Util.h Vehicle.h
 	$(CC) $(CFLAGS) main.cpp
 
-Bottleneck.o: Bottleneck.cpp Singleton.h
+Bottleneck.o: Bottleneck.cpp Bottleneck.h Singleton.h
 	$(CC) $(CFLAGS) Bottleneck.cpp
 
-TrafficDirector.o: TrafficDirector.cpp Singleton.h Util.h
+TrafficDirector.o: TrafficDirector.cpp TrafficDirector.h Singleton.h Util.h
 	$(CC) $(CFLAGS) TrafficDirector.cpp
 
-TrafficSimulator.o: TrafficSimulator.cpp Singleton.h
+TrafficSimulator.o: TrafficSimulator.cpp TrafficSimulator.h Singleton.h
 	$(CC) $(CFLAGS) TrafficSimulator.cpp
 
-Util.o: Util.cpp
+Util.o: Util.cpp Util.h
 	$(CC) $(CFLAGS) Util.cpp
 
-Vehicle.o: Vehicle.cpp Util.h
+Vehicle.o: Vehicle.cpp Vehicle.h Util.h
 	$(CC) $(CFLAGS) Vehicle.cpp
 
 clean:
