@@ -1,5 +1,6 @@
 #include "Util.h"
 
+#include <chrono>  // chrono
 #include <cstdarg>  // va_list
 #include <cstdio>  // snprintf
 #include <cstdlib>  // size_t
@@ -7,7 +8,6 @@
 #include <sstream>  // stringstream
 
 #if _WIN32
-#include <chrono>  // chrono
 #include <thread>  // this_thread
 #else
 #include <pthread.h>
@@ -33,7 +33,7 @@ void SleepFor(std::size_t a_seconds)
 	}
 	//When to expire is an absolute time, so get the current time and add
 	 //it to our delay time
-	timetoexpire.tv_sec = (unsigned int)time(NULL) + seconds;
+	timetoexpire.tv_sec = (unsigned int)time(NULL) + a_seconds;
 	timetoexpire.tv_nsec = 0;
 	pthread_cond_timedwait(&conditionvar, &mutex, &timetoexpire);
 #endif
