@@ -8,6 +8,19 @@
 #include "Util.h"  // TimeToString, GetTime, FormatStr
 
 
+static constexpr char FMT[] = MAKE_STR(VEHICLE_FMT);
+static constexpr char CAR_ID[] = "Car-ID";
+static constexpr char DIRECTION[] = "Direction";
+static constexpr char ARRIVAL_TIME[] = "Arrival-Time";
+static constexpr char START_TIME[] = "Start-Time";
+static constexpr char END_TIME[] = "End-Time";
+static constexpr std::size_t CAR_ID_LEN = sizeof(CAR_ID) - 1 > COLUMN_WIDTH ? sizeof(CAR_ID) - 1 : COLUMN_WIDTH;
+static constexpr std::size_t DIRECTION_LEN = sizeof(DIRECTION) - 1 > COLUMN_WIDTH ? sizeof(DIRECTION) - 1 : COLUMN_WIDTH;
+static constexpr std::size_t ARRIVAL_TIME_LEN = sizeof(ARRIVAL_TIME) - 1 > COLUMN_WIDTH ? sizeof(ARRIVAL_TIME) - 1 : COLUMN_WIDTH;
+static constexpr std::size_t START_TIME_LEN = sizeof(START_TIME) - 1 > COLUMN_WIDTH ? sizeof(START_TIME) - 1 : COLUMN_WIDTH;
+static constexpr std::size_t END_TIME_LEN = sizeof(END_TIME) - 1 > COLUMN_WIDTH ? sizeof(END_TIME) - 1 : COLUMN_WIDTH;
+
+
 void Vehicle::TimeStampArrival()
 {
 	arrivalTime = GetTime();
@@ -28,8 +41,6 @@ void Vehicle::TimeStampEnd()
 
 void Vehicle::PrintHeader(std::ofstream* a_file)
 {
-	using namespace VehicleLiterals;
-
 	(*a_file) << FormatStr(FMT,
 						   CAR_ID_LEN, CAR_ID,
 						   DIRECTION_LEN, DIRECTION,
@@ -44,8 +55,6 @@ void Vehicle::PrintHeader(std::ofstream* a_file)
 
 void Vehicle::Dump(std::ofstream* a_file) const
 {
-	using namespace VehicleLiterals;
-
 	std::string arrival = TimeToString(std::localtime(&arrivalTime));
 	std::string start = TimeToString(std::localtime(&startTime));
 	std::string end = TimeToString(std::localtime(&endTime));

@@ -4,10 +4,12 @@
 #include "Vehicle.h"  // Vehicle
 
 
+static constexpr std::uint_fast32_t CAR_CHANCE = 80;
+static constexpr std::uint_fast32_t NORTH_CHANCE = 50;
+
+
 void TrafficSimulator::Run()
 {
-	using namespace TrafficSimulatorLiterals;
-
 	if (Roll(CAR_CHANCE)) {
 		{
 			Bottleneck* bottleneck = Bottleneck::GetSingleton();

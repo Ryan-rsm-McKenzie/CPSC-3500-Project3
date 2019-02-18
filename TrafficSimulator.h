@@ -18,13 +18,6 @@ typedef sem_t semaphore;
 #endif
 
 
-namespace TrafficSimulatorLiterals
-{
-	static constexpr std::uint_fast32_t CAR_CHANCE = 80;
-	static constexpr std::uint_fast32_t NORTH_CHANCE = 50;
-}
-
-
 class TrafficSimulator : public Singleton<TrafficSimulator>
 {
 	friend class Singleton<TrafficSimulator>;

@@ -10,6 +10,15 @@
 #include "Vehicle.h"  // Vehicle
 
 
+static constexpr char FMT[] = MAKE_STR(TRAFFIC_DIRECTOR_FMT);
+static constexpr char TIME[] = "Time";
+static constexpr char STATE[] = "State";
+static constexpr char CAR_LOG[] = "car.log";
+static constexpr char FLAG_LOG[] = "flagperson.log";
+static constexpr std::size_t TIME_LEN = sizeof(TIME) - 1 > COLUMN_WIDTH ? sizeof(TIME) - 1 : COLUMN_WIDTH;
+static constexpr std::size_t STATE_LEN = sizeof(STATE) - 1 > COLUMN_WIDTH ? sizeof(STATE) - 1 : COLUMN_WIDTH;
+
+
 void TrafficDirector::Run()
 {
 	Bottleneck* bottleneck = Bottleneck::GetSingleton();
@@ -52,8 +61,6 @@ void TrafficDirector::Run()
 
 void TrafficDirector::PrintHeader()
 {
-	using namespace TrafficDirectorLiterals;
-
 	_flagFile << FormatStr(FMT,
 						   TIME_LEN, TIME,
 						   STATE_LEN, STATE);
@@ -65,8 +72,6 @@ void TrafficDirector::PrintHeader()
 
 void TrafficDirector::TimeStamp(bool a_awake)
 {
-	using namespace TrafficDirectorLiterals;
-
 	std::time_t time = GetTime();
 	std::string timeStr = TimeToString(std::localtime(&time));
 
@@ -87,8 +92,8 @@ std::ofstream* TrafficDirector::GetCarLog()
 
 TrafficDirector::TrafficDirector() :
 	_mode(Mode::kInvalid),
-	_carFile(TrafficDirectorLiterals::CAR_LOG),
-	_flagFile(TrafficDirectorLiterals::FLAG_LOG)
+	_carFile(CAR_LOG),
+	_flagFile(FLAG_LOG)
 {
 	assert(_carFile.is_open());
 	assert(_flagFile.is_open());
