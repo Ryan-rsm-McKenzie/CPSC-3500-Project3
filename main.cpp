@@ -31,7 +31,7 @@ void JoinThread(thread_t& a_thread)
 	a_thread.join();
 }
 #else
-#include <phtread.h>  // pthread_t, pthread_create, pthread_join
+#include <pthread.h>  // pthread_t, pthread_create, pthread_join
 
 
 typedef pthread_t thread_t;
