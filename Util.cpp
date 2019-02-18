@@ -63,7 +63,7 @@ std::string FormatStr(const char* a_fmt, ...)
 	va_copy(args2, args1);
 	std::vector<char> buf(std::vsnprintf(0, 0, a_fmt, args1) + 1);
 	va_end(args1);
-	std::vsnprintf(buf.data, buf.size(), a_fmt, args2);
+	std::vsnprintf(buf.data(), buf.size(), a_fmt, args2);
 	va_end(args2);
 	std::string str = buf.data();
 	return str;
