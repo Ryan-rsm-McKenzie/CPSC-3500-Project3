@@ -1,8 +1,6 @@
 #include "TrafficDirector.h"
 
-#include <cassert>  // assert
-#include <cstdlib>  // size_t
-#include <stdexcept>  // runtime_error
+#include <cassert>  // #include <stdexcept>  // runtime_error
 #include <string>  // to_string
 #include <type_traits>  // underlying_type
 
@@ -94,12 +92,3 @@ TrafficDirector::TrafficDirector() :
 
 TrafficDirector::~TrafficDirector()
 {}
-
-
-constexpr char TrafficDirector::FMT[];
-constexpr char TrafficDirector::TIME[];
-constexpr char TrafficDirector::STATE[];
-constexpr char TrafficDirector::CAR_LOG[];
-constexpr char TrafficDirector::FLAG_LOG[];
-constexpr std::size_t TrafficDirector::TIME_LEN;
-constexpr std::size_t TrafficDirector::STATE_LEN;

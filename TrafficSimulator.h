@@ -40,3 +40,7 @@ protected:
 	std::size_t _nextID;
 	semaphore _semaphore;
 };
+
+
+constexpr decltype(TrafficSimulator::CAR_CHANCE) TrafficSimulator::CAR_CHANCE;
+constexpr decltype(TrafficSimulator::NORTH_CHANCE) TrafficSimulator::NORTH_CHANCE;
