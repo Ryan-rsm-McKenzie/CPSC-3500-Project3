@@ -5,7 +5,7 @@
 #include <cstdio>  // snprintf
 #include <cstdlib>  // size_t
 #include <iomanip>  // put_time
-#include <sstream>  // stringstream
+#include <string>  // string
 
 #if _WIN32
 #include <thread>  // this_thread
@@ -48,9 +48,9 @@ std::time_t GetTime()
 
 std::string TimeToString(const std::tm* a_time)
 {
-	std::stringstream ss;
-	ss << std::put_time(a_time, "%T");
-	return ss.str();
+	static char buf[9];
+	std::snprintf(buf, sizeof(buf), "%02i:%02i:%02i", a_time->tm_hour, a_time->tm_min, a_time->tm_sec);
+	return buf;
 }
 
 
