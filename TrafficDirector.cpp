@@ -1,6 +1,6 @@
 #include "TrafficDirector.h"
 
-#include <cassert>  // #include <stdexcept>  // runtime_error
+#include <cassert>  // assert
 #include <stdexcept>  // runtime_error
 #include <string>  // to_string
 #include <type_traits>  // underlying_type
