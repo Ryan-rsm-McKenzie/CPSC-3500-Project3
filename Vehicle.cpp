@@ -1,5 +1,6 @@
 #include "Vehicle.h"
 
+#include <cstdlib>  // size_t
 #include <ctime>  // localtime
 #include <stdexcept>  // runtime_error
 #include <string>  // to_string
@@ -86,3 +87,16 @@ const char* Vehicle::DirectionToString(CardinalDirection a_direction) const
 		throw std::runtime_error("[ERROR] Encountered unknown cardinal direction (" + std::to_string(static_cast<std::underlying_type<decltype(a_direction)>::type>(a_direction)) + ")");
 	}
 }
+
+
+constexpr char Vehicle::FMT[];
+constexpr char Vehicle::CAR_ID[];
+constexpr char Vehicle::DIRECTION[];
+constexpr char Vehicle::ARRIVAL_TIME[];
+constexpr char Vehicle::START_TIME[];
+constexpr char Vehicle::END_TIME[];
+constexpr std::size_t Vehicle::CAR_ID_LEN;
+constexpr std::size_t Vehicle::DIRECTION_LEN;
+constexpr std::size_t Vehicle::ARRIVAL_TIME_LEN;
+constexpr std::size_t Vehicle::START_TIME_LEN;
+constexpr std::size_t Vehicle::END_TIME_LEN;

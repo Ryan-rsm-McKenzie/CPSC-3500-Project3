@@ -1,5 +1,7 @@
 #include "TrafficSimulator.h"
 
+#include <cstdint>  // uint_fast32_t
+
 #include "Bottleneck.h"  // Bottleneck
 #include "Vehicle.h"  // Vehicle
 
@@ -59,3 +61,7 @@ bool TrafficSimulator::Roll(std::uint_fast32_t a_chance)
 {
 	return (_rng() % 100) <= a_chance;
 }
+
+
+constexpr std::uint_fast32_t TrafficSimulator::CAR_CHANCE;
+constexpr std::uint_fast32_t TrafficSimulator::NORTH_CHANCE;
