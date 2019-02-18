@@ -46,7 +46,7 @@ std::time_t GetTime()
 #if _WIN32
 	return std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 #else
-	return time();
+	return time(0);
 #endif
 }
 
