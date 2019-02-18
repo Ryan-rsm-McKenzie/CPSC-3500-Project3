@@ -32,6 +32,7 @@ void JoinThread(thread_t& a_thread)
 }
 #else
 #include <pthread.h>  // pthread_t, pthread_create, pthread_join
+#include <semaphore.h>  // sem_wait
 
 
 typedef pthread_t thread_t;
