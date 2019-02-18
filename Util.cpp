@@ -6,6 +6,7 @@
 #include <cstdlib>  // size_t
 #include <iomanip>  // put_time
 #include <string>  // string
+#include <vector>  // vector
 
 #if _WIN32
 #include <thread>  // this_thread
@@ -56,13 +57,14 @@ std::string TimeToString(const std::tm* a_time)
 
 std::string FormatStr(const char* a_fmt, ...)
 {
-	std::va_list args;
-	va_start(args, a_fmt);
-	std::size_t bufSize = std::vsnprintf(0, 0, a_fmt, args) + 100;
-	char* buf = new char[bufSize];
-	std::vsnprintf(buf, bufSize, a_fmt, args);
-	va_end(args);
-	std::string str = buf;
-	delete[] buf;
+	std::va_list args1;
+	va_start(args1, a_fmt);
+	std::va_list args2;
+	va_copy(args2, args1);
+	std::vector<char> buf(std::vsnprintf(0, 0, a_fmt, args1) + 1);
+	va_end(args1);
+	std::vsnprintf(buf.data, buf.size(), a_fmt, args2);
+	va_end(args2);
+	std::string str = buf.data();
 	return str;
 }
