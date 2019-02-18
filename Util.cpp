@@ -58,7 +58,7 @@ std::string FormatStr(const char* a_fmt, ...)
 {
 	std::va_list args;
 	va_start(args, a_fmt);
-	std::size_t bufSize = std::vsnprintf(0, 0, a_fmt, args) + 1;
+	std::size_t bufSize = std::vsnprintf(0, 0, a_fmt, args) + 100;
 	char* buf = new char[bufSize];
 	std::vsnprintf(buf, bufSize, a_fmt, args);
 	va_end(args);
