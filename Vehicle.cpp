@@ -86,3 +86,16 @@ const char* Vehicle::DirectionToString(CardinalDirection a_direction) const
 		throw std::runtime_error("[ERROR] Encountered unknown cardinal direction (" + std::to_string(static_cast<std::underlying_type<decltype(a_direction)>::type>(a_direction)) + ")");
 	}
 }
+
+
+constexpr decltype(Vehicle::FMT) Vehicle::FMT;
+constexpr decltype(Vehicle::CAR_ID) Vehicle::CAR_ID;
+constexpr decltype(Vehicle::DIRECTION) Vehicle::DIRECTION;
+constexpr decltype(Vehicle::ARRIVAL_TIME) Vehicle::ARRIVAL_TIME;
+constexpr decltype(Vehicle::START_TIME) Vehicle::START_TIME;
+constexpr decltype(Vehicle::END_TIME) Vehicle::END_TIME;
+constexpr decltype(Vehicle::CAR_ID_LEN) Vehicle::CAR_ID_LEN;
+constexpr decltype(Vehicle::DIRECTION_LEN) Vehicle::DIRECTION_LEN;
+constexpr decltype(Vehicle::ARRIVAL_TIME_LEN) Vehicle::ARRIVAL_TIME_LEN;
+constexpr decltype(Vehicle::START_TIME_LEN) Vehicle::START_TIME_LEN;
+constexpr decltype(Vehicle::END_TIME_LEN) Vehicle::END_TIME_LEN;

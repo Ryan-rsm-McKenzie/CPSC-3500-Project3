@@ -93,3 +93,12 @@ TrafficDirector::TrafficDirector() :
 
 TrafficDirector::~TrafficDirector()
 {}
+
+
+constexpr decltype(TrafficDirector::FMT) TrafficDirector::FMT;
+constexpr decltype(TrafficDirector::TIME) TrafficDirector::TIME;
+constexpr decltype(TrafficDirector::STATE) TrafficDirector::STATE;
+constexpr decltype(TrafficDirector::CAR_LOG) TrafficDirector::CAR_LOG;
+constexpr decltype(TrafficDirector::FLAG_LOG) TrafficDirector::FLAG_LOG;
+constexpr decltype(TrafficDirector::TIME_LEN) TrafficDirector::TIME_LEN;
+constexpr decltype(TrafficDirector::STATE_LEN) TrafficDirector::STATE_LEN;

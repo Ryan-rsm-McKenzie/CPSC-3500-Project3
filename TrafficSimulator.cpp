@@ -59,3 +59,7 @@ bool TrafficSimulator::Roll(std::uint_fast32_t a_chance)
 {
 	return (_rng() % 100) <= a_chance;
 }
+
+
+constexpr decltype(TrafficSimulator::CAR_CHANCE) TrafficSimulator::CAR_CHANCE;
+constexpr decltype(TrafficSimulator::NORTH_CHANCE) TrafficSimulator::NORTH_CHANCE;
