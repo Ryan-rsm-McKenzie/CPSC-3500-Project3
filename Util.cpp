@@ -14,7 +14,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>  // time
+#include <time.h>
 #endif
 
 
@@ -43,11 +43,7 @@ void SleepFor(std::size_t a_seconds)
 
 std::time_t GetTime()
 {
-#if _WIN32
 	return std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-#else
-	return time(0);
-#endif
 }
 
 
