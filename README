@@ -1,0 +1,69 @@
+/*
+ * README file for project 3
+ */
+
+///////// Team member's name and contributions //////////////////////
+Team member #1: Ryan McKenzie
+Contributions: Everything
+Percentage of contributions: 100%
+
+Team member #2:
+Contributions:
+Percentage of contributions:
+
+
+
+/////// Thread information /////////////////////////////////////////
+Total threads: 
+
+[Thread #1]
+  --> Task: Directs traffic through the bottleneck
+  --> Thread function name: DirectorCallback()
+
+[Thread #2]
+  --> Task: Simulates cars arriving on either side of the bottleneck and
+				notifies the director when cars are spawned
+  --> Thread function name: SimulatorCallback()
+  
+[Thread #3]
+  --> Task: Manages allocation/deallocation of program resources and terminates
+				the program
+  --> Thread function name: main()
+
+..............
+
+
+
+////// Semaphores ////////////////////////////////////////////////
+Number of semaphores: 1
+
+[Sempahore #1]
+  --> Variable: Bottleneck::_semaphore
+  --> Initial value: 0/locked
+  --> Purpose: Enables the Simulator to notify the Director when cars have been added,
+					and blocks when no cars are ready
+
+............
+
+
+
+////// Mutex lock ///////////////////////////////////////////////
+Number of mutex locks: 1
+
+[Mutex lock #1]
+  --> Variable: Bottleneck::_lock
+  --> Purpose: Enables thread safe access to the bottleneck which represents the construction lane
+
+............
+
+
+///// Strengths  ////////////////////////////////////////////////
+
+Program compiles cross platform
+
+
+//// Weaknesses ///////////////////////////////////////////////
+
+I couldn't get pthread_wait to work properly, so I had to resort to stl thread library
+
+

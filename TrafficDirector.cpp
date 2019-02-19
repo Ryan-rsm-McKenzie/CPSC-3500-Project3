@@ -10,21 +10,35 @@
 #include "Vehicle.h"  // Vehicle
 
 
+TrafficDirector::TrafficDirector() :
+	_mode(Mode::kInvalid),
+	_carFile(CAR_LOG),
+	_flagFile(FLAG_LOG)
+{
+	assert(_carFile.is_open());
+	assert(_flagFile.is_open());
+}
+
+
+TrafficDirector::~TrafficDirector()
+{}
+
+
 void TrafficDirector::Run()
 {
 	Bottleneck* bottleneck = Bottleneck::GetSingleton();
 	Bottleneck::Locker locker(bottleneck);
 	if (bottleneck->HasQueuedVehicles()) {
 		_mode = bottleneck->GetNorthVehicleCount() > bottleneck->GetSouthVehicleCount() ? Mode::kNorth : Mode::kSouth;
-		Vehicle* car = 0;
+		Vehicle car;
 		do {
 			switch (_mode) {
 			case Mode::kNorth:
 				{
 					car = bottleneck->PopNorthVehicle();
-					car->TimeStampStart();
+					car.TimeStampStart();
 					SleepFor(1);
-					car->TimeStampEnd();
+					car.TimeStampEnd();
 					if (bottleneck->GetNorthVehicleCount() == 0 || bottleneck->GetSouthVehicleCount() >= 10) {
 						_mode = Mode::kSouth;
 					}
@@ -33,9 +47,9 @@ void TrafficDirector::Run()
 			case Mode::kSouth:
 				{
 					car = bottleneck->PopSouthVehicle();
-					car->TimeStampStart();
+					car.TimeStampStart();
 					SleepFor(1);
-					car->TimeStampEnd();
+					car.TimeStampEnd();
 					if (bottleneck->GetSouthVehicleCount() == 0 || bottleneck->GetNorthVehicleCount() >= 10) {
 						_mode = Mode::kNorth;
 					}
@@ -44,7 +58,7 @@ void TrafficDirector::Run()
 			default:
 				throw std::runtime_error("[ERROR] Encountered unknown mode (" + std::to_string(static_cast<std::underlying_type<decltype(_mode)>::type>(_mode)) + ")");
 			}
-			car->Dump(&_carFile);
+			car.Dump(&_carFile);
 		} while (bottleneck->HasQueuedVehicles());
 	}
 }
@@ -79,20 +93,6 @@ std::ofstream* TrafficDirector::GetCarLog()
 {
 	return &_carFile;
 }
-
-
-TrafficDirector::TrafficDirector() :
-	_mode(Mode::kInvalid),
-	_carFile(CAR_LOG),
-	_flagFile(FLAG_LOG)
-{
-	assert(_carFile.is_open());
-	assert(_flagFile.is_open());
-}
-
-
-TrafficDirector::~TrafficDirector()
-{}
 
 
 constexpr decltype(TrafficDirector::FMT) TrafficDirector::FMT;

@@ -32,7 +32,6 @@
     <ClInclude Include="Bottleneck.h" />
     <ClInclude Include="mutex.h" />
     <ClInclude Include="semaphore.h" />
-    <ClInclude Include="Singleton.h" />
     <ClInclude Include="TrafficDirector.h" />
     <ClInclude Include="TrafficSimulator.h" />
     <ClInclude Include="Util.h" />

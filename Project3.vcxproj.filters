@@ -46,9 +46,6 @@
     <ClInclude Include="TrafficSimulator.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="Bottleneck.h">
       <Filter>include</Filter>
     </ClInclude>

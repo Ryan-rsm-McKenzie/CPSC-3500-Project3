@@ -1,57 +1,42 @@
 #include "TrafficSimulator.h"
 
 #include "Bottleneck.h"  // Bottleneck
-#include "Vehicle.h"  // Vehicle
+
+
+TrafficSimulator::TrafficSimulator() :
+	_nextID(1)
+{}
+
+
+TrafficSimulator::~TrafficSimulator()
+{}
 
 
 void TrafficSimulator::Run()
 {
-	if (Roll(CAR_CHANCE)) {
-		{
-			Bottleneck* bottleneck = Bottleneck::GetSingleton();
-			Bottleneck::Locker locker(bottleneck);
-			do {
-				_cars.push_back(new Vehicle());
-				_cars.back()->id = _nextID++;
-				_cars.back()->TimeStampArrival();
-				if (Roll(NORTH_CHANCE)) {
-					_cars.back()->direction = Vehicle::CardinalDirection::kNorth;
-					bottleneck->PushNorthVehicle(_cars.back());
-				} else {
-					_cars.back()->direction = Vehicle::CardinalDirection::kSouth;
-					bottleneck->PushSouthVehicle(_cars.back());
-				}
-			} while (Roll(CAR_CHANCE));
-		}
-		Notify();
+	{
+		Bottleneck* bottleneck = Bottleneck::GetSingleton();
+		Bottleneck::Locker locker(bottleneck);
+		Vehicle car;
+		do {
+			car.id = _nextID++;
+			car.TimeStampArrival();
+			if (Roll(NORTH_CHANCE)) {
+				car.direction = Vehicle::CardinalDirection::kNorth;
+				bottleneck->PushNorthVehicle(car);
+			} else {
+				car.direction = Vehicle::CardinalDirection::kSouth;
+				bottleneck->PushSouthVehicle(car);
+			}
+		} while (Roll(CAR_CHANCE));
 	}
+	Notify();
 }
 
 
 void TrafficSimulator::Notify()
 {
-	sem_post(&_semaphore);
-}
-
-
-semaphore* TrafficSimulator::GetSemaphore()
-{
-	return &_semaphore;
-}
-
-
-TrafficSimulator::TrafficSimulator() :
-	_nextID(1)
-{
-	sem_init(&_semaphore, 0, 0);
-}
-
-
-TrafficSimulator::~TrafficSimulator()
-{
-	for (auto& car : _cars) {
-		delete car;
-	}
+	sem_post(Bottleneck::GetSingleton()->GetSemaphore());
 }
 
 

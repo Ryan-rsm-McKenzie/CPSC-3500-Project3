@@ -8,6 +8,19 @@
 #include "Util.h"  // TimeToString, GetTime, FormatStr
 
 
+Vehicle::Vehicle() :
+	id(0),
+	direction(CardinalDirection::kInvalid),
+	startTime(),
+	arrivalTime(),
+	endTime()
+{}
+
+
+Vehicle::~Vehicle()
+{}
+
+
 void Vehicle::TimeStampArrival()
 {
 	arrivalTime = GetTime();
@@ -56,19 +69,6 @@ void Vehicle::Dump(std::ofstream* a_file) const
 	a_file->flush();
 #endif
 }
-
-
-Vehicle::Vehicle() :
-	id(0),
-	direction(CardinalDirection::kInvalid),
-	startTime(),
-	arrivalTime(),
-	endTime()
-{}
-
-
-Vehicle::~Vehicle()
-{}
 
 
 const char* Vehicle::DirectionToString(CardinalDirection a_direction) const
