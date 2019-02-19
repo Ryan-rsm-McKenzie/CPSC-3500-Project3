@@ -4,6 +4,7 @@
 #include "Util.h"  // SleepFor
 #include "Vehicle.h"  // Vehicle
 
+#include <cstdio>  // printf
 #include <cstdlib>  // size_t, atoi
 #include <utility>  // move
 #include <vector>  // vector
@@ -116,7 +117,10 @@ int main(int argc, char* argv[])
 	SpawnThread(threads, DirectorCallback);
 	SpawnThread(threads, SimulatorCallback);
 
-	SleepFor(secondsToRun);
+	for (std::size_t i = 0; i < secondsToRun; ++i) {
+		SleepFor(1);
+		std::printf("Running...");
+	}
 
 	g_run = false;
 	g_terminate = true;
