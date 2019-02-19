@@ -8,6 +8,7 @@
 #include <string>  // string
 #include <vector>  // vector
 
+#include <thread>  // this_thread
 #if _WIN32
 #include <thread>  // this_thread
 #else
@@ -20,7 +21,7 @@
 
 void SleepFor(std::size_t a_seconds)
 {
-#if _WIN32
+#if true
 	std::this_thread::sleep_for(std::chrono::seconds(a_seconds));
 #else
 	pthread_mutex_t mutex;
